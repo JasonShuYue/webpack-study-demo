@@ -1,0 +1,14 @@
+* {
+  margin: 0;
+  padding: 0; }
+
+.box {
+  width: 500px;
+  background-image: url(images/6c4aef8c88bf3b964656fb85c8330d5f.jpg);
+  bakcground-size: contain; }
+
+.parent {
+  background: red; }
+  .parent .son {
+    background: black; }
+

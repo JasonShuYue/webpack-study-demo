@@ -3,7 +3,9 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin'); // 使用html模板
 
 
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin'); // 用于压缩JS
+
+const MiniCssExtractPlugin = require('mini-css-extract-plugin'); // 用于分离CSS
 
 module.exports = {
     entry: path.resolve(__dirname, 'src/main.js'),
@@ -15,7 +17,7 @@ module.exports = {
         rules: [
             {
                 test: /\.css/,
-                use: ['style-loader', 'css-loader'],
+                use: [{ loader: MiniCssExtractPlugin.loader }, 'css-loader'],
                 exclude: /node_modules/,
                 include: path.resolve(__dirname, 'src')
             },
@@ -33,7 +35,7 @@ module.exports = {
             },
             {
                 test: /\.scss/,
-                use: ['style-loader', 'css-loader', 'sass-loader'],
+                use: [{ loader: MiniCssExtractPlugin.loader }, 'css-loader', 'sass-loader'],
                 exclude: /node_modules/,
                 include: path.resolve(__dirname, 'src')
             }
@@ -50,6 +52,9 @@ module.exports = {
     plugins: [
         new HtmlWebpackPlugin({
             template: path.resolve(__dirname, 'src/index.html')
+        }),
+        new MiniCssExtractPlugin({
+            filename: 'css/hello.css'
         })
     ],
     devServer: {
