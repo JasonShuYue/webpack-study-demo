@@ -7,7 +7,16 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'bundle.js',
-        publicPath: '/'
+    },
+    module: {
+        rules: [
+            {
+                test: /\.css/,
+                use: ['style-loader', 'css-loader'],
+                exclude: /node_modules/,
+                include: path.resolve(__dirname, 'src')
+            }
+        ]
     },
     plugins: [
         new HtmlWebpackPlugin({
@@ -19,4 +28,5 @@ module.exports = {
         port: '8080',
         host: 'localhost'
     }
+
 }
