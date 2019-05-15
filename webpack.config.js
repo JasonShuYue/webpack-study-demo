@@ -2,6 +2,9 @@ const path = require('path');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin'); // 使用html模板
 
+
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+
 module.exports = {
     entry: path.resolve(__dirname, 'src/main.js'),
     output: {
@@ -34,6 +37,14 @@ module.exports = {
                 exclude: /node_modules/,
                 include: path.resolve(__dirname, 'src')
             }
+        ],
+
+    },
+    optimization: {
+        minimizer: [
+            new UglifyJsPlugin({
+                parallel: 4,
+            }),
         ]
     },
     plugins: [
@@ -45,6 +56,6 @@ module.exports = {
         contentBase: path.join(__dirname, 'dist'),
         port: '8080',
         host: 'localhost'
-    }
+    },
 
 }
