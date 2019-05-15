@@ -5,6 +5,7 @@
 }
 
 .box {
-    height: 50px;
-    background: antiquewhite;
+    width: 500px;
+    background-image: url("./myPhoto.jpg");
+    bakcground-size: contain;
 }

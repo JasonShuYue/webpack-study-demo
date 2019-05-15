@@ -15,6 +15,18 @@ module.exports = {
                 use: ['style-loader', 'css-loader'],
                 exclude: /node_modules/,
                 include: path.resolve(__dirname, 'src')
+            },
+            {
+                test: /\.(gif|jpg|png|bmp|eot|woff|woff2|ttf|svg)/,
+                use: [
+                    {
+                        loader: 'url-loader',
+                        options: {
+                            limit: 8192,
+                            outputPath: 'images'
+                        }
+                    }
+                ]
             }
         ]
     },
