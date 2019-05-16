@@ -38,7 +38,23 @@ module.exports = {
                 use: [{ loader: MiniCssExtractPlugin.loader }, 'css-loader', 'sass-loader'],
                 exclude: /node_modules/,
                 include: path.resolve(__dirname, 'src')
-            }
+            },
+            {
+                test: /\.jsx?$/,
+                use: [
+                    {
+                        loader: 'babel-loader',
+                        options: {
+                            presets: ['@babel/preset-env', '@babel/react'],
+                            plugins: [
+                                [require("@babel/plugin-proposal-decorators"), { "legacy": true }]
+                            ]
+                        }
+                    }
+                ],
+                include: path.resolve(__dirname, 'src'),
+                exclude: /node_modules/
+            },
         ],
 
     },
